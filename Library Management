@@ -1,0 +1,78 @@
+class Library:
+
+    def __init__(self, listOfBooks):
+        self.books = listOfBooks
+
+    def displayAvailableBooks(self):
+        print("Books present in this library are: ")
+        for book in self.books: 
+            print(" *" + book)
+
+    def borrowedbook(self , bookname):
+        if bookname in self.books :
+            print(f"You  have borrowed {bookname} please keep it safe")
+            self.books.remove(bookname)
+            return True
+        else:
+            print("This book has already been issued or Either this book is not Available Please wait until it gets returned")
+            return False
+
+    def returnbook(self, bookname):
+        self.books.append(bookname)
+        print("Thank for returning this book ! Hope you enjoyed it")
+
+    def Latefine(self):
+        print(" 1. You will be charged 5 Rupee per day if you Fails to return book on time")
+        print(" 2. You will be Charged 100 including the cost of book whenever you lost the book")
+
+
+class Student:
+    
+    def reqstbook(self):
+        self.book = input("Enter the name of book you want to borrow : ")
+        return self.book
+
+    def returnbook(self):
+        self.book = input("Enter the name of book you want to return : ")
+        return self.book    
+        
+
+if __name__ == "__main__":
+    centraLibrary = Library(["Algorithms", "Django", "Clrs", "Python Notes"])
+    student = Student()
+    while(True):
+        welcomemsg = '''\n***** WELCOME TO THE CENTRAL LIBRARY OF PATNA ***** 
+        Please Choose an Option :
+        Press 1. Your Details :        
+        Press 2. For LIST of Books
+        Press 3. Request a Book
+        Press 4. Return a Book
+        Press 5. About Late Fine Charges Details
+        Press 6. To exit the library
+        '''
+        print(welcomemsg)   
+        a = int(input("Enter a Choice : "))
+        if a == 1:
+            print(input("Enter Your Name : "))
+
+            print(input("Enter Your Mobile Number : "))
+
+            print(input("Enter Your Age : "))
+
+            print(''' NOW YOU CAN CHOOSE ANOTHER OPTION''')
+
+        elif a == 2:
+            centraLibrary.displayAvailableBooks()
+        elif a == 3:
+            centraLibrary.borrowedbook(student.reqstbook())
+        elif a == 4:
+            centraLibrary.returnbook(student.returnbook())
+        elif a == 5:
+            centraLibrary.Latefine()    
+        elif a == 6:
+            print("Thanks for using Central Library")
+            exit()
+        else:
+            print("Invalid Choice")
+       
+         
