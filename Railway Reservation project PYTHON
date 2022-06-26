@@ -1,0 +1,78 @@
+class Railway:
+
+    def __init__(self, trainlist):
+        self.train = trainlist
+
+    def displayAvailabletrain(self):
+        print("Tickets available for trains are \n: ")
+        for train in self.train: 
+            print(" *" + train)
+
+    def getticket(self , trainname):
+        if trainname in self.train :
+            print(f"You  have got the ticket of {trainname} from Samastipur to New Delhi please keep it safe")
+            self.train.remove(trainname)
+            return True
+        else:
+            print(" This train already full you can wait until someone cancels their tickets")
+            return False
+
+    def returnticket(self, trainname):
+        self.train.append(trainname)
+        print("Thank for returning this ticket")
+
+    def Latefine(self):
+        print(" 1. You will be charged 60 percent of your ticket if you fails to return before 24hrs of your journey")
+        print(" 2. You will be Charged 100 including the cost of ticket whenever you lost the ticket to get it reprinted")
+
+
+class Ticket:
+    
+    def bookticket(self):
+        self.train = input("Enter the name of train ticket you want to book : ")
+        return self.train
+
+    def returnticket(self):
+        self.train = input("Enter the name of train ticket you want to return : ")
+        return self.train  
+
+if __name__ == "__main__":
+    Railwayform = Railway(["Vaishali Express", "Rajdhani Express", "Shatbdi Express", "Bagh Express"])
+    ticket = Ticket()
+    while(True):
+        welcomemsg = '''\n***** WELCOME TO THE RAILWAY RESERVATION COUNTER *****
+                  SAMASTIPUR BIHAR 
+
+        Please Choose an Option From Search List :
+
+        Press 1. Your Details :        
+        Press 2. For LIST of Availabe trains
+        Press 3. Book a Ticket
+        Press 4. Return a Ticket
+        Press 5. About Late Fine Charges Details
+        Press 6. To exit the Counter
+        '''
+        print(welcomemsg)   
+        a = int(input("Enter a Choice : "))
+        if a == 1:
+            print(input("Enter Your Name : "))
+
+            print(input("Enter Your Mobile Number : "))
+
+            print(input("Enter Your Age : "))
+
+            print(''' NOW YOU CAN CHOOSE ANOTHER OPTION''')
+
+        elif a == 2:
+            Railwayform.displayAvailabletrain()
+        elif a == 3:
+            Railwayform.getticket(ticket.bookticket())
+        elif a == 4:
+            Railwayform.returnticket(ticket.returnticket())
+        elif a == 5:
+            Railwayform.Latefine()       
+        elif a == 6:
+            print("Thanks for using Railway  services")
+            exit()
+        else:
+            print("Invalid Choice")
